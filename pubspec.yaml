@@ -1,0 +1,37 @@
+name: vergate
+description: >-
+  A flexible app version gate for Flutter. Force or soft updates,
+  maintenance mode, snooze and skip, fully customizable UI.
+version: 0.0.1
+repository: https://github.com/therasuldev/vergate
+issue_tracker: https://github.com/therasuldev/vergate/issues
+homepage: https://github.com/therasuldev/vergate
+
+environment:
+  sdk: ^3.13.0
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  package_info_plus: ^10.2.1
+  url_launcher: ^6.3.0
+  shared_preferences: ^2.3.0
+  http: ^1.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+topics:
+  - version-check
+  - force-update
+  - maintenance
+  - app-update
+
+screenshots:
+  - description: Force update, soft update banner and maintenance screen.
+    path: doc/images/overview.png 
+  - description: Dialog style, dark mode and a custom brand color.
+    path: doc/images/customization.png
