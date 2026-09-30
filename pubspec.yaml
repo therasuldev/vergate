@@ -2,7 +2,7 @@ name: vergate
 description: >-
   A flexible app version gate for Flutter. Force or soft updates,
   maintenance mode, snooze and skip, fully customizable UI.
-version: 0.0.1
+version: 0.1.0
 repository: https://github.com/therasuldev/vergate
 issue_tracker: https://github.com/therasuldev/vergate/issues
 homepage: https://github.com/therasuldev/vergate
