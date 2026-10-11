@@ -169,7 +169,7 @@ final remoteConfigSource = CallbackSource(() async {
   final rc = FirebaseRemoteConfig.instance;
   await rc.setConfigSettings(RemoteConfigSettings(
     fetchTimeout: const Duration(seconds: 10),
-    minimumFetchInterval: kDebugMode ? Duration.zero : const Duration(hours: 1),
+    minimumFetchInterval: kDebugMode ? .zero : const Duration(hours: 1),
   ));
   await rc.setDefaults({'vergate_config': '{}'});
   await rc.fetchAndActivate();
@@ -219,8 +219,8 @@ class MySource implements VergateSource {
 ```dart
 VergateGate(
   controller: vergate,
-  softUpdateStyle: VergateSoftUpdateStyle.banner, // banner | dialog | none
-  bannerAlignment: Alignment.bottomCenter,
+  softUpdateStyle: .banner, // banner | dialog | none
+  bannerAlignment: .bottomCenter,
   child: child!,
 )
 ```
