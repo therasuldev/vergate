@@ -138,12 +138,10 @@ class VergateController extends ChangeNotifier with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state != AppLifecycleState.resumed) return;
+    if (state != .resumed) return;
 
     final lastFetch = _lastFetchAt;
-    final isStale =
-        lastFetch == null ||
-        _now().difference(lastFetch) >= resumeCheckInterval;
+    final isStale = lastFetch == null || _now().difference(lastFetch) >= resumeCheckInterval;
 
     if (isStale || _isBlocking(_rawStatus)) {
       unawaited(check());
@@ -209,12 +207,7 @@ class VergateController extends ChangeNotifier with WidgetsBindingObserver {
     final version = _currentVersion;
     if (config == null || version == null) return;
 
-    _rawStatus = VergateEvaluator.evaluate(
-      config: config,
-      currentVersion: version,
-      platform: _platform,
-      now: _now(),
-    );
+    _rawStatus = VergateEvaluator.evaluate(config: config, currentVersion: version, platform: _platform, now: _now());
   }
 
   // ---------------------------------------------------------------------------
@@ -294,8 +287,7 @@ class VergateController extends ChangeNotifier with WidgetsBindingObserver {
 
   DateTime _now() => _clock();
 
-  bool _isBlocking(VergateStatus status) =>
-      status is VergateForceUpdate || status is VergateUnderMaintenance;
+  bool _isBlocking(VergateStatus status) => status is VergateForceUpdate || status is VergateUnderMaintenance;
 
   /// Hides soft updates that the user snoozed or skipped.
   VergateStatus _applyUserChoices(VergateStatus raw) {
@@ -321,9 +313,7 @@ class VergateController extends ChangeNotifier with WidgetsBindingObserver {
 
   Future<void> _readUserChoices() async {
     final snoozeMillis = int.tryParse(await _read(_snoozeKey) ?? '');
-    _snoozedUntil = snoozeMillis == null
-        ? null
-        : DateTime.fromMillisecondsSinceEpoch(snoozeMillis, isUtc: true);
+    _snoozedUntil = snoozeMillis == null ? null : DateTime.fromMillisecondsSinceEpoch(snoozeMillis, isUtc: true);
     _skippedVersion = AppVersion.tryParse(await _read(_skipKey));
   }
 
@@ -356,6 +346,6 @@ class VergateController extends ChangeNotifier with WidgetsBindingObserver {
   }
 
   static Future<bool> _defaultUrlOpener(Uri url) {
-    return launchUrl(url, mode: LaunchMode.externalApplication);
+    return launchUrl(url, mode: .externalApplication);
   }
 }
