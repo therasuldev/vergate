@@ -13,3 +13,8 @@ Initial release.
 * `VergateTheme`, `VergateStrings` and `stringsBuilder` for full customization.
 * Custom builders to replace any built-in screen.
 * `debugOverrideStatus` to preview every state in debug mode.
+
+## 0.1.1
+
+* Upgraded codebase to adopt modern Dart syntax conventions.
+* Performance optimizations and minor bug fixes.
