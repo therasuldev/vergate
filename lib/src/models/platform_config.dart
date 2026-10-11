@@ -4,11 +4,7 @@ import '../core/json_utils.dart';
 /// Version rules and store link for a single platform.
 class VergatePlatformConfig {
   /// Creates a platform configuration.
-  const VergatePlatformConfig({
-    this.minVersion,
-    this.latestVersion,
-    this.storeUrl,
-  });
+  const VergatePlatformConfig({this.minVersion, this.latestVersion, this.storeUrl});
 
   /// Creates a configuration from a decoded JSON map.
   ///
@@ -16,10 +12,8 @@ class VergatePlatformConfig {
   /// Invalid or missing values become `null`.
   factory VergatePlatformConfig.fromJson(Map<String, dynamic> json) {
     return VergatePlatformConfig(
-      minVersion: AppVersion.tryParse(asNonEmptyString(json['min_version'])),
-      latestVersion: AppVersion.tryParse(
-        asNonEmptyString(json['latest_version']),
-      ),
+      minVersion: .tryParse(asNonEmptyString(json['min_version'])),
+      latestVersion: .tryParse(asNonEmptyString(json['latest_version'])),
       storeUrl: asNonEmptyString(json['store_url']),
     );
   }
