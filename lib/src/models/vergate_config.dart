@@ -31,12 +31,7 @@ import 'vergate_platform.dart';
 /// ```
 class VergateConfig {
   /// Creates a configuration.
-  const VergateConfig({
-    this.android,
-    this.ios,
-    this.releaseNotes = const [],
-    this.maintenance,
-  });
+  const VergateConfig({this.android, this.ios, this.releaseNotes = const [], this.maintenance});
 
   /// Creates a configuration from a decoded JSON map.
   factory VergateConfig.fromJson(Map<String, dynamic> json) {
@@ -45,12 +40,10 @@ class VergateConfig {
     final maintenance = asJsonMap(json['maintenance']);
 
     return VergateConfig(
-      android: android == null ? null : VergatePlatformConfig.fromJson(android),
-      ios: ios == null ? null : VergatePlatformConfig.fromJson(ios),
+      android: android == null ? null : .fromJson(android),
+      ios: ios == null ? null : .fromJson(ios),
       releaseNotes: asStringList(json['release_notes']),
-      maintenance: maintenance == null
-          ? null
-          : VergateMaintenance.fromJson(maintenance),
+      maintenance: maintenance == null ? null : .fromJson(maintenance),
     );
   }
 
@@ -64,7 +57,7 @@ class VergateConfig {
     if (map == null) {
       throw FormatException('Vergate config must be a JSON object', source);
     }
-    return VergateConfig.fromJson(map);
+    return .fromJson(map);
   }
 
   /// Rules for Android. `null` means no rules (never blocks).
@@ -82,11 +75,11 @@ class VergateConfig {
   /// Returns the rules that apply to [platform], if any.
   VergatePlatformConfig? forPlatform(VergatePlatform platform) {
     switch (platform) {
-      case VergatePlatform.android:
+      case .android:
         return android;
-      case VergatePlatform.ios:
+      case .ios:
         return ios;
-      case VergatePlatform.other:
+      case .other:
         return null;
     }
   }
