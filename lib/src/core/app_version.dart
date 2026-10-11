@@ -5,12 +5,7 @@
 /// Pre-release suffixes such as `-beta.1` are ignored when comparing.
 class AppVersion implements Comparable<AppVersion> {
   /// Creates a version from its numeric parts.
-  const AppVersion(
-    this.major, [
-    this.minor = 0,
-    this.patch = 0,
-    this.build = 0,
-  ]);
+  const AppVersion(this.major, [this.minor = 0, this.patch = 0, this.build = 0]);
 
   /// Parses [input] into an [AppVersion].
   ///
@@ -21,10 +16,10 @@ class AppVersion implements Comparable<AppVersion> {
       throw FormatException('Invalid app version format', input);
     }
     return AppVersion(
-      int.parse(match.group(1)!),
-      int.parse(match.group(2) ?? '0'),
-      int.parse(match.group(3) ?? '0'),
-      int.parse(match.group(4) ?? '0'),
+      .parse(match.group(1)!),
+      .parse(match.group(2) ?? '0'),
+      .parse(match.group(3) ?? '0'),
+      .parse(match.group(4) ?? '0'),
     );
   }
 
@@ -32,7 +27,7 @@ class AppVersion implements Comparable<AppVersion> {
   static AppVersion? tryParse(String? input) {
     if (input == null) return null;
     try {
-      return AppVersion.parse(input);
+      return .parse(input);
     } on FormatException {
       return null;
     }
@@ -40,9 +35,7 @@ class AppVersion implements Comparable<AppVersion> {
 
   /// Matches: optional "v" prefix, up to three numeric parts,
   /// an ignored pre-release tag and an optional "+build" number.
-  static final RegExp _pattern = RegExp(
-    r'^v?(\d+)(?:\.(\d+))?(?:\.(\d+))?(?:-[0-9A-Za-z.\-]+)?(?:\+(\d+))?$',
-  );
+  static final RegExp _pattern = RegExp(r'^v?(\d+)(?:\.(\d+))?(?:\.(\d+))?(?:-[0-9A-Za-z.\-]+)?(?:\+(\d+))?$');
 
   /// Major version number (breaking changes).
   final int major;
@@ -83,13 +76,11 @@ class AppVersion implements Comparable<AppVersion> {
   }
 
   @override
-  bool operator ==(Object other) =>
-      other is AppVersion && compareTo(other) == 0;
+  bool operator ==(Object other) => other is AppVersion && compareTo(other) == 0;
 
   @override
   int get hashCode => Object.hash(major, minor, patch, build);
 
   @override
-  String toString() =>
-      build == 0 ? '$major.$minor.$patch' : '$major.$minor.$patch+$build';
+  String toString() => build == 0 ? '$major.$minor.$patch' : '$major.$minor.$patch+$build';
 }
