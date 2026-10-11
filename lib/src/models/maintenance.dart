@@ -7,12 +7,7 @@ import '../core/json_utils.dart';
 /// means the window is open on that side.
 class VergateMaintenance {
   /// Creates a maintenance configuration.
-  const VergateMaintenance({
-    this.enabled = false,
-    this.from,
-    this.until,
-    this.message,
-  });
+  const VergateMaintenance({this.enabled = false, this.from, this.until, this.message});
 
   /// Creates a configuration from a decoded JSON map.
   ///
