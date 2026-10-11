@@ -29,5 +29,5 @@ String? asNonEmptyString(Object? value) {
 /// Values without a zone are treated as device local time.
 DateTime? asUtcDate(Object? value) {
   if (value is! String) return null;
-  return DateTime.tryParse(value)?.toUtc();
+  return .tryParse(value)?.toUtc();
 }
