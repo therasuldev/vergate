@@ -43,31 +43,24 @@ class VergateMaintenanceView extends StatelessWidget {
       child: SafeArea(
         child: Center(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
+            padding: const .all(24),
             child: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: t.maxWidth),
               child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: t.surfaceColor,
-                  borderRadius: BorderRadius.circular(t.cornerRadius),
-                ),
+                decoration: BoxDecoration(color: t.surfaceColor, borderRadius: .circular(t.cornerRadius)),
                 child: Padding(
                   padding: t.cardPadding,
                   child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: .min,
+                    crossAxisAlignment: .stretch,
                     children: [
                       Center(child: t.maintenanceIcon),
                       const SizedBox(height: 16),
-                      Text(
-                        strings.maintenanceTitle,
-                        textAlign: TextAlign.center,
-                        style: t.titleStyle,
-                      ),
+                      Text(strings.maintenanceTitle, textAlign: .center, style: t.titleStyle),
                       const SizedBox(height: 8),
                       Text(
                         maintenance.message ?? strings.maintenanceMessage,
-                        textAlign: TextAlign.center,
+                        textAlign: .center,
                         style: t.messageStyle,
                       ),
                       if (until != null) ...[
@@ -80,7 +73,7 @@ class VergateMaintenanceView extends StatelessWidget {
                           timeStyle: t.titleStyle.copyWith(
                             fontSize: 28,
                             color: t.primaryColor,
-                            fontFeatures: const [FontFeature.tabularFigures()],
+                            fontFeatures: const [.tabularFigures()],
                           ),
                           onFinished: onCountdownFinished,
                         ),
@@ -146,24 +139,24 @@ class _CountdownState extends State<_Countdown> {
   }
 
   Duration _computeRemaining() {
-    final left = widget.until.difference(DateTime.now());
-    return left.isNegative ? Duration.zero : left;
+    final left = widget.until.difference(.now());
+    return left.isNegative ? .zero : left;
   }
 
   void _start() {
     _timer?.cancel();
     _remaining = _computeRemaining();
 
-    if (_remaining == Duration.zero) {
+    if (_remaining == .zero) {
       _finish();
       return;
     }
-    _timer = Timer.periodic(const Duration(seconds: 1), (_) => _tick());
+    _timer = .periodic(const Duration(seconds: 1), (_) => _tick());
   }
 
   void _tick() {
     setState(() => _remaining = _computeRemaining());
-    if (_remaining == Duration.zero) {
+    if (_remaining == .zero) {
       _timer?.cancel();
       _finish();
     }
