@@ -24,7 +24,7 @@ class VergateTheme {
     this.cornerRadius = 24,
     this.buttonRadius = 100,
     this.maxWidth = 400,
-    this.cardPadding = const EdgeInsets.all(24),
+    this.cardPadding = const .all(24),
     this.animationDuration = const Duration(milliseconds: 250),
   });
 
@@ -101,32 +101,17 @@ class VergateTheme {
       barrierColor: barrierColor ?? Colors.black54,
       textColor: onSurface,
       secondaryTextColor: onSurfaceVariant,
-      bannerColor:
-          bannerColor ?? Color.alphaBlend(primary.withAlpha(36), surface),
+      bannerColor: bannerColor ?? .alphaBlend(primary.withAlpha(36), surface),
       titleStyle:
           titleStyle ??
-          (textTheme.titleLarge ?? const TextStyle(fontSize: 22)).copyWith(
-            color: onSurface,
-            fontWeight: FontWeight.w700,
-          ),
+          (textTheme.titleLarge ?? const TextStyle(fontSize: 22)).copyWith(color: onSurface, fontWeight: .w700),
       messageStyle:
           messageStyle ??
-          (textTheme.bodyLarge ?? const TextStyle(fontSize: 16)).copyWith(
-            color: onSurfaceVariant,
-            height: 1.4,
-          ),
+          (textTheme.bodyLarge ?? const TextStyle(fontSize: 16)).copyWith(color: onSurfaceVariant, height: 1.4),
       buttonTextStyle:
-          buttonTextStyle ??
-          (textTheme.labelLarge ?? const TextStyle()).copyWith(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
-      updateIcon:
-          updateIcon ??
-          Icon(Icons.system_update_rounded, size: 48, color: primary),
-      maintenanceIcon:
-          maintenanceIcon ??
-          Icon(Icons.construction_rounded, size: 48, color: primary),
+          buttonTextStyle ?? (textTheme.labelLarge ?? const TextStyle()).copyWith(fontSize: 16, fontWeight: .w600),
+      updateIcon: updateIcon ?? Icon(Icons.system_update_rounded, size: 48, color: primary),
+      maintenanceIcon: maintenanceIcon ?? Icon(Icons.construction_rounded, size: 48, color: primary),
       cornerRadius: cornerRadius,
       buttonRadius: buttonRadius,
       maxWidth: maxWidth,
