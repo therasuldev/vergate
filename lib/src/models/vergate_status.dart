@@ -49,23 +49,13 @@ sealed class VergateUpdateStatus extends VergateStatus {
 /// A newer version exists, but the user may continue with the current one.
 final class VergateSoftUpdate extends VergateUpdateStatus {
   /// Creates a soft update status.
-  const VergateSoftUpdate({
-    required super.currentVersion,
-    super.latestVersion,
-    super.storeUrl,
-    super.releaseNotes,
-  });
+  const VergateSoftUpdate({required super.currentVersion, super.latestVersion, super.storeUrl, super.releaseNotes});
 }
 
 /// The installed version is no longer supported and must be updated.
 final class VergateForceUpdate extends VergateUpdateStatus {
   /// Creates a force update status.
-  const VergateForceUpdate({
-    required super.currentVersion,
-    super.latestVersion,
-    super.storeUrl,
-    super.releaseNotes,
-  });
+  const VergateForceUpdate({required super.currentVersion, super.latestVersion, super.storeUrl, super.releaseNotes});
 }
 
 /// The app is temporarily unavailable.
