@@ -12,8 +12,7 @@ import 'vergate_source.dart';
 /// ```
 class FallbackSource implements VergateSource {
   /// Creates a source that tries [sources] from first to last.
-  FallbackSource(this.sources)
-    : assert(sources.isNotEmpty, 'At least one source is required');
+  FallbackSource(this.sources) : assert(sources.isNotEmpty, 'At least one source is required');
 
   /// Sources in priority order.
   final List<VergateSource> sources;
