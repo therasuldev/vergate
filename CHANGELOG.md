@@ -18,3 +18,6 @@ Initial release.
 
 * Upgraded codebase to adopt modern Dart syntax conventions.
 * Performance optimizations and minor bug fixes.
+
+### 0.1.2
+* Bug fix
