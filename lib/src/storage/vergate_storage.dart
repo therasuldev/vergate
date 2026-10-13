@@ -25,8 +25,7 @@ class SharedPreferencesStorage implements VergateStorage {
   Future<SharedPreferences>? _instance;
 
   // Created lazily so that constructing the storage never does I/O.
-  Future<SharedPreferences> get _prefs =>
-      _instance ??= SharedPreferences.getInstance();
+  Future<SharedPreferences> get _prefs => _instance ??= SharedPreferences.getInstance();
 
   @override
   Future<String?> read(String key) async {
