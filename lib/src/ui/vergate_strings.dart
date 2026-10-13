@@ -79,6 +79,5 @@ class VergateStrings {
   final String daysSuffix;
 
   /// Fills the `{version}` placeholder in [template].
-  String format(String template, {String? version}) =>
-      template.replaceAll('{version}', version ?? '');
+  String format(String template, {String? version}) => template.replaceAll('{version}', version ?? '');
 }
