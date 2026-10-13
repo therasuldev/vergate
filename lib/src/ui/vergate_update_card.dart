@@ -47,42 +47,27 @@ class VergateUpdateCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = theme.resolve(context);
-    final template = status is VergateForceUpdate
-        ? strings.forceUpdateMessage
-        : strings.softUpdateMessage;
-    final message = strings.format(
-      template,
-      version: status.latestVersion?.toString(),
-    );
+    final template = status is VergateForceUpdate ? strings.forceUpdateMessage : strings.softUpdateMessage;
+    final message = strings.format(template, version: status.latestVersion?.toString());
     final notes = status.releaseNotes.take(maxReleaseNotes).toList();
 
     return DecoratedBox(
       decoration: BoxDecoration(
         color: t.surfaceColor,
-        borderRadius: BorderRadius.circular(t.cornerRadius),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x1F000000),
-            blurRadius: 24,
-            offset: Offset(0, 8),
-          ),
-        ],
+        borderRadius: .circular(t.cornerRadius),
+        boxShadow: const [BoxShadow(color: Color(0x1F000000), blurRadius: 24, offset: Offset(0, 8))],
       ),
       child: Padding(
         padding: t.cardPadding,
         child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: .min,
+          crossAxisAlignment: .stretch,
           children: [
             Center(child: t.updateIcon),
             const SizedBox(height: 16),
-            Text(
-              strings.updateTitle,
-              textAlign: TextAlign.center,
-              style: t.titleStyle,
-            ),
+            Text(strings.updateTitle, textAlign: .center, style: t.titleStyle),
             const SizedBox(height: 8),
-            Text(message, textAlign: TextAlign.center, style: t.messageStyle),
+            Text(message, textAlign: .center, style: t.messageStyle),
             if (notes.isNotEmpty) ...[
               const SizedBox(height: 16),
               _ReleaseNotes(heading: strings.whatsNew, notes: notes, theme: t),
@@ -93,14 +78,12 @@ class VergateUpdateCard extends StatelessWidget {
               style: FilledButton.styleFrom(
                 backgroundColor: t.primaryColor,
                 foregroundColor: t.onPrimaryColor,
-                minimumSize: const Size.fromHeight(52),
+                minimumSize: const .fromHeight(52),
                 textStyle: t.buttonTextStyle,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(t.buttonRadius),
-                ),
+                shape: RoundedRectangleBorder(borderRadius: .circular(t.buttonRadius)),
               ),
               child: Row(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: .min,
                 children: [
                   Text(strings.updateNow),
                   const SizedBox(width: 8),
@@ -109,17 +92,9 @@ class VergateUpdateCard extends StatelessWidget {
               ),
             ),
             if (onLater != null)
-              _SecondaryButton(
-                label: strings.remindLater,
-                onPressed: onLater!,
-                color: t.secondaryTextColor,
-              ),
+              _SecondaryButton(label: strings.remindLater, onPressed: onLater!, color: t.secondaryTextColor),
             if (onSkip != null)
-              _SecondaryButton(
-                label: strings.skipVersion,
-                onPressed: onSkip!,
-                color: t.secondaryTextColor,
-              ),
+              _SecondaryButton(label: strings.skipVersion, onPressed: onSkip!, color: t.secondaryTextColor),
           ],
         ),
       ),
@@ -128,11 +103,7 @@ class VergateUpdateCard extends StatelessWidget {
 }
 
 class _SecondaryButton extends StatelessWidget {
-  const _SecondaryButton({
-    required this.label,
-    required this.onPressed,
-    required this.color,
-  });
+  const _SecondaryButton({required this.label, required this.onPressed, required this.color});
 
   final String label;
   final VoidCallback onPressed;
@@ -141,7 +112,7 @@ class _SecondaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 4),
+      padding: const .only(top: 4),
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(foregroundColor: color),
@@ -152,11 +123,7 @@ class _SecondaryButton extends StatelessWidget {
 }
 
 class _ReleaseNotes extends StatelessWidget {
-  const _ReleaseNotes({
-    required this.heading,
-    required this.notes,
-    required this.theme,
-  });
+  const _ReleaseNotes({required this.heading, required this.notes, required this.theme});
 
   final String heading;
   final List<String> notes;
@@ -167,21 +134,18 @@ class _ReleaseNotes extends StatelessWidget {
     final bodyStyle = theme.messageStyle.copyWith(fontSize: 14);
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: .start,
       children: [
         Text(
           heading,
-          style: bodyStyle.copyWith(
-            color: theme.textColor,
-            fontWeight: FontWeight.w600,
-          ),
+          style: bodyStyle.copyWith(color: theme.textColor, fontWeight: .w600),
         ),
         const SizedBox(height: 6),
         for (final note in notes)
           Padding(
-            padding: const EdgeInsets.only(bottom: 4),
+            padding: const .only(bottom: 4),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: .start,
               children: [
                 Text('•  ', style: bodyStyle),
                 Expanded(child: Text(note, style: bodyStyle)),
