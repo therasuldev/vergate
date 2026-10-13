@@ -22,12 +22,7 @@ import 'vergate_source.dart';
 /// * The App Store can lag behind a release by several hours.
 class ItunesLookupSource implements VergateSource {
   /// Creates a source for the app with the given iOS [bundleId].
-  ItunesLookupSource({
-    required this.bundleId,
-    this.country,
-    this.timeout = const Duration(seconds: 10),
-    this._client,
-  });
+  ItunesLookupSource({required this.bundleId, this.country, this.timeout = const Duration(seconds: 10), this._client});
 
   /// The iOS bundle identifier, e.g. `com.example.app`.
   final String bundleId;
@@ -42,18 +37,13 @@ class ItunesLookupSource implements VergateSource {
 
   @override
   Future<VergateConfig> fetch() async {
-    final uri = Uri.https('itunes.apple.com', '/lookup', {
-      'bundleId': bundleId,
-      'country': ?country,
-    });
+    final uri = Uri.https('itunes.apple.com', '/lookup', {'bundleId': bundleId, 'country': ?country});
 
     final client = _client ?? http.Client();
     try {
       final response = await client.get(uri).timeout(timeout);
       if (response.statusCode != 200) {
-        throw VergateSourceException(
-          'Unexpected status code ${response.statusCode} from iTunes Lookup',
-        );
+        throw VergateSourceException('Unexpected status code ${response.statusCode} from iTunes Lookup');
       }
 
       final body = asJsonMap(jsonDecode(utf8.decode(response.bodyBytes)));
@@ -68,16 +58,11 @@ class ItunesLookupSource implements VergateSource {
       final app = asJsonMap(results.first);
       final latest = AppVersion.tryParse(asNonEmptyString(app?['version']));
       if (latest == null) {
-        throw const VergateSourceException(
-          'iTunes Lookup response has no valid version',
-        );
+        throw const VergateSourceException('iTunes Lookup response has no valid version');
       }
 
       return VergateConfig(
-        ios: VergatePlatformConfig(
-          latestVersion: latest,
-          storeUrl: asNonEmptyString(app?['trackViewUrl']),
-        ),
+        ios: VergatePlatformConfig(latestVersion: latest, storeUrl: asNonEmptyString(app?['trackViewUrl'])),
         releaseNotes: _splitNotes(asNonEmptyString(app?['releaseNotes'])),
       );
     } on VergateSourceException {
