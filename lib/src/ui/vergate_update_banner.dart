@@ -36,7 +36,7 @@ class VergateUpdateBanner extends StatelessWidget {
     final hasClose = onDismiss != null;
 
     return Padding(
-      padding: const EdgeInsets.all(12),
+      padding: const .all(12),
       child: Material(
         color: t.bannerColor,
         borderRadius: radius,
@@ -44,12 +44,7 @@ class VergateUpdateBanner extends StatelessWidget {
           borderRadius: radius,
           onTap: onUpdate,
           child: Padding(
-            padding: EdgeInsets.fromLTRB(
-              16,
-              hasClose ? 4 : 14,
-              hasClose ? 4 : 16,
-              hasClose ? 4 : 14,
-            ),
+            padding: .fromLTRB(16, hasClose ? 4 : 14, hasClose ? 4 : 16, hasClose ? 4 : 14),
             child: Row(
               children: [
                 Icon(Icons.info_outline, size: 20, color: t.primaryColor),
@@ -57,21 +52,13 @@ class VergateUpdateBanner extends StatelessWidget {
                 Expanded(
                   child: Text(
                     strings.bannerTitle,
-                    style: t.messageStyle.copyWith(
-                      color: t.textColor,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: t.messageStyle.copyWith(color: t.textColor, fontSize: 15, fontWeight: .w600),
                   ),
                 ),
                 const SizedBox(width: 8),
                 Text(
                   strings.bannerAction,
-                  style: t.messageStyle.copyWith(
-                    color: t.primaryColor,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: t.messageStyle.copyWith(color: t.primaryColor, fontSize: 15, fontWeight: .w700),
                 ),
                 if (hasClose)
                   // No tooltip on purpose: tooltips need an Overlay, which
