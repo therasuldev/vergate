@@ -36,7 +36,7 @@ a maintenance screen. It works with any backend, and you control every pixel.
 
 ```yaml
 dependencies:
-  vergate: ^0.1.0
+  vergate: ^0.1.2
 ```
 
 ```bash
