@@ -67,18 +67,15 @@ class VergateGate extends StatelessWidget {
     this.theme = const VergateTheme(),
     this.strings,
     this.stringsBuilder,
-    this.softUpdateStyle = VergateSoftUpdateStyle.banner,
-    this.bannerAlignment = Alignment.topCenter,
+    this.softUpdateStyle = .banner,
+    this.bannerAlignment = .topCenter,
     this.forceUpdateBuilder,
     this.softUpdateBuilder,
     this.maintenanceBuilder,
     this.onUpdateTap,
     this.onLaterTap,
     this.onSkipTap,
-  }) : assert(
-         strings == null || stringsBuilder == null,
-         'Provide either strings or stringsBuilder, not both.',
-       );
+  }) : assert(strings == null || stringsBuilder == null, 'Provide either strings or stringsBuilder, not both.');
 
   /// The controller whose [VergateController.status] drives the gate.
   final VergateController controller;
@@ -131,11 +128,9 @@ class VergateGate extends StatelessWidget {
       builder: (context, _) {
         final status = controller.status;
         final resolved = theme.resolve(context);
-        final texts =
-            strings ?? stringsBuilder?.call(context) ?? const VergateStrings();
+        final texts = strings ?? stringsBuilder?.call(context) ?? const VergateStrings();
         final overlay = _buildOverlay(context, resolved, texts, status);
-        final blocking =
-            status is VergateForceUpdate || status is VergateUnderMaintenance;
+        final blocking = status is VergateForceUpdate || status is VergateUnderMaintenance;
 
         // The app is always the first Stack child, so its state survives
         // overlays appearing and disappearing.
@@ -155,8 +150,7 @@ class VergateGate extends StatelessWidget {
                 ignoring: overlay == null,
                 child: AnimatedSwitcher(
                   duration: resolved.animationDuration,
-                  child:
-                      overlay ?? const SizedBox.shrink(key: ValueKey('none')),
+                  child: overlay ?? const SizedBox.shrink(key: ValueKey('none')),
                 ),
               ),
             ),
@@ -205,12 +199,7 @@ class VergateGate extends StatelessWidget {
       _ModalLayer(
         barrierColor: resolved.barrierColor,
         maxWidth: resolved.maxWidth,
-        child: VergateUpdateCard(
-          status: status,
-          strings: texts,
-          theme: theme,
-          onUpdate: () => _update(status),
-        ),
+        child: VergateUpdateCard(status: status, strings: texts, theme: theme, onUpdate: () => _update(status)),
       ),
     );
   }
@@ -227,10 +216,10 @@ class VergateGate extends StatelessWidget {
     }
 
     switch (softUpdateStyle) {
-      case VergateSoftUpdateStyle.none:
+      case .none:
         return null;
 
-      case VergateSoftUpdateStyle.banner:
+      case .banner:
         return _layer(
           'banner',
           SafeArea(
@@ -249,7 +238,7 @@ class VergateGate extends StatelessWidget {
           ),
         );
 
-      case VergateSoftUpdateStyle.dialog:
+      case .dialog:
         return _layer(
           'soft',
           _ModalLayer(
@@ -269,11 +258,7 @@ class VergateGate extends StatelessWidget {
     }
   }
 
-  Widget _maintenanceOverlay(
-    BuildContext context,
-    VergateStrings texts,
-    VergateUnderMaintenance status,
-  ) {
+  Widget _maintenanceOverlay(BuildContext context, VergateStrings texts, VergateUnderMaintenance status) {
     final custom = maintenanceBuilder;
     if (custom != null) {
       return _layer('maintenance', custom(context, status, controller));
@@ -298,7 +283,7 @@ class VergateGate extends StatelessWidget {
     return KeyedSubtree(
       key: ValueKey(id),
       child: Material(
-        type: MaterialType.transparency,
+        type: .transparency,
         child: SizedBox.expand(child: content),
       ),
     );
@@ -326,12 +311,7 @@ class VergateGate extends StatelessWidget {
 
 /// A dimmed barrier with a centered, scrollable card.
 class _ModalLayer extends StatelessWidget {
-  const _ModalLayer({
-    required this.barrierColor,
-    required this.maxWidth,
-    required this.child,
-    this.onBarrierTap,
-  });
+  const _ModalLayer({required this.barrierColor, required this.maxWidth, required this.child, this.onBarrierTap});
 
   final Color barrierColor;
   final double maxWidth;
@@ -345,16 +325,12 @@ class _ModalLayer extends StatelessWidget {
     return Stack(
       children: [
         Positioned.fill(
-          child: ModalBarrier(
-            color: barrierColor,
-            dismissible: onBarrierTap != null,
-            onDismiss: onBarrierTap,
-          ),
+          child: ModalBarrier(color: barrierColor, dismissible: onBarrierTap != null, onDismiss: onBarrierTap),
         ),
         SafeArea(
           child: Center(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(24),
+              padding: const .all(24),
               child: ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: maxWidth),
                 child: child,
